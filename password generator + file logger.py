@@ -14,7 +14,7 @@ def clear_screen():
         os.system("clear")
 
 
-# funtion to store the password in the json file
+# function to store the password in the json file
 def write_to_file(filename, password_selector):
     if os.path.exists(filename) and os.path.getsize(filename) > 0:
         with open(filename, "r") as f:
@@ -36,11 +36,13 @@ def write_to_file(filename, password_selector):
 
 
 def search(filename, id):
-    if os.path.exists(filename) and os.path.getsize(filename) > 0:
-        with open(filename, "r") as f:
-            data = json.load(f)
-    else:
+    # FIX: Handle first run when file doesn't exist or is empty
+    if not os.path.exists(filename) or os.path.getsize(filename) == 0:
         print("No data exsits")
+        return
+
+    with open(filename, "r") as f:
+        data = json.load(f)
 
     if id in data:
         print(data[id])
@@ -62,26 +64,28 @@ str = string.ascii_letters + string.digits + string.ascii_letters + string.punct
 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 password_selector = ""
 
+# Automatically save json file in the same script directory
+script_directory = os.path.dirname(os.path.abspath(__file__))
+filename = os.path.join(script_directory, "password_logger.json")
 
-filename = # Enter the file path for the json password logger file in the format "C:/folder name/folder name/password_logger.json"
 
 while True:
     clear_screen()
     print(
-        """    ____                  __                           
-   / __ \____ _____  ____/ /___  ____ ___              
-  / /_/ / __ `/ __ \/ __  / __ \/ __ `__ \             
- / _, _/ /_/ / / / / /_/ / /_/ / / / / / /             
-/_/ |_|\__,_/_/ /_/\__,_/\____/_/ /_/ /_/         __   
-   / __ \____ ____________      ______  _________/ /   
-  / /_/ / __ `/ ___/ ___/ | /| / / __ \/ ___/ __  /    
- / ____/ /_/ (__  |__  )| |/ |/ / /_/ / /  / /_/ /     
-/_/____\__,_/____/____/ |__/|__/\____/_/   \__,_/      
-  / ____/__  ____  ___  _________ _/ /_____  _____     
- / / __/ _ \/ __ \/ _ \/ ___/ __ `/ __/ __ \/ ___/     
-/ /_/ /  __/ / / /  __/ /  / /_/ / /_/ /_/ / /         
-\____/\___/_/ /_/\___/_/   \__,_/\__/\____/_/          
-                                                       """
+        """    ____                  __                                 
+   / __ \____ _____  ____/ /___  ____ ___                    
+  / /_/ / __ `/ __ \/ __  / __ \/ __ `__ \                   
+ / _, _/ /_/ / / / / /_/ / /_/ / / / / / /                   
+/_/ |_|\__,_/_/ /_/\__,_/\____/_/ /_/ /_/             __    
+   / __ \____ ____________      ______  ___________/ /    
+  / /_/ / __ `/ ___/ ___/ | /| / / __ \/ ___/ __  /     
+ / ____/ /_/ (__  |__  )| |/ |/ / /_/ / /  / /_/ /      
+/_/____\__,_/____/____/ |__/|__/\____/_/   \__,_/       
+  / ____/__  ____  ___  _________ _/ /_____  _____      
+ / / __/ _ \/ __ \/ _ \/ ___/ __ `/ __/ __ \/ ___/      
+/ /_/ /  __/ / / /  __/ /  / /_/ / /_/ /_/ / /          
+\____/\___/_/ /_/\___/_/   \__,_/\__/\____/_/           
+                                                          """
     )
 
     ch = input(
@@ -97,4 +101,3 @@ while True:
             input("\nPress Enter to return to the menu...")
         case "3":
             break
-
