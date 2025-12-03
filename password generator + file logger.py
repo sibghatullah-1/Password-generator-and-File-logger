@@ -63,7 +63,7 @@ now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 password_selector = ""
 
 
-filename = "C:/Users/Sibghatullah/Documents/Vscode file/python projects by mrsid/random password generator + text file logger/password_logger.json"
+filename = # Enter the file path for the json password logger file in the format "C:/folder name/folder name/password_logger.json"
 
 while True:
     clear_screen()
@@ -97,3 +97,4 @@ while True:
             input("\nPress Enter to return to the menu...")
         case "3":
             break
+
