@@ -33,11 +33,9 @@ A Python script that generates cryptographically secure, random passwords and se
 
 The script stores generated passwords in a JSON file called `password_logger.json`.
 
-## ✨ Customization
 
 ### 1. File Path **(CRITICAL)**
 
-### The script currently uses a hardcoded file path for the log file which you can change inside the script and provide your own path by replacing the path inside the the script with the path where you place the 'password_logger.json' :
+### The script will automatically create a json file containg all your passwords in the destination where you placed your pyhon script.
 
-```python
-filename = "Enter your file path here for the password logger json file "
+
